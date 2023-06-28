@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -31,9 +30,10 @@ public class ChangeFileExtension {
 
     public static void read(String fileName1) throws IOException {
         FileReader fr = new FileReader(fileName1);
-        BufferedReader br = new BufferedReader(fr);
-        while (br.ready()) {
-            System.out.println(br.readLine());
+        try (BufferedReader br = new BufferedReader(fr)) {
+            while (br.ready()) {
+                System.out.println(br.readLine());
+            }
         }
     }
 }
